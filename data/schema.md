@@ -305,7 +305,7 @@ retailers ──┬─< retailer_rules
 
 ## Volume targets
 
-For the 24-month window (Nov 2023 → Sep 2025), cross-channel pipeline output:
+For the 36-month window (Jan 2023 → Jan 2026), cross-channel pipeline output:
 
 | Table | Target rows | Notes |
 |---|---|---|
