@@ -1,7 +1,8 @@
 {
  "_meta_vendored": {
-  "from": "MsShawnP/cinderhaven-data-platform@7533264",
+  "from": "MsShawnP/cinderhaven-data-platform@6a64179",
   "path": "reference/canonical_values.yml",
+  "trade_rerate": "2026-07-30",
   "vendored": "2026-07-30",
   "verified_against_production": "2026-07-29"
  },
@@ -355,6 +356,21 @@
   }
  },
  "trade": {
+  "all_in_annual": {
+   "trailing_52w": 3556609.29
+  },
+  "all_in_rate_pct": {
+   "trailing_52w": 11.0
+  },
+  "all_in_total": {
+   "trailing_36m": 10669827.88
+  },
+  "op_waste_annual": {
+   "trailing_365d": 379558.78
+  },
+  "op_waste_rate_pct": {
+   "trailing_52w": 1.17
+  },
   "promotional_spend": {
    "cy2023": 194512.94,
    "cy2024": 134377.94,
@@ -370,6 +386,12 @@
    "trailing_12m": 1653699.53,
    "trailing_24m": 3256675.97,
    "trailing_36m": 4751415.49
+  },
+  "structural_annual": {
+   "trailing_52w": 3177050.51
+  },
+  "structural_rate_pct": {
+   "trailing_52w": 9.83
   }
  },
  "universe": {
