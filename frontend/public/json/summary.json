@@ -6,7 +6,7 @@
   },
   "totals": {
     "deductions_count": 16917,
-    "deductions_dollar": 1346814.55,
+    "deductions_dollar": 1346814.56,
     "annualized_dollar": 436804.72,
     "disputes_filed": 6011,
     "disputes_recovered": 196694.71,
@@ -16,7 +16,7 @@
     "orders_count": 54944,
     "orders_dollar": 74893256.16,
     "deductions_no_dispute_count": 10906,
-    "deductions_no_dispute_dollar": 877620.26
+    "deductions_no_dispute_dollar": 877620.27
   },
   "by_type": [
     {
@@ -71,7 +71,7 @@
     {
       "deduction_type": "short_ship",
       "count": 4306,
-      "dollar": 87490.49,
+      "dollar": 87490.5,
       "pct_count": 0.2545,
       "pct_dollars": 0.065
     },
@@ -152,7 +152,7 @@
       "name": "KeHE",
       "channel_type": "distributor",
       "deductions": 696,
-      "dollar": 83564.84,
+      "dollar": 83564.85,
       "recovered": 10981.68,
       "recovery_rate": 0.1314
     },

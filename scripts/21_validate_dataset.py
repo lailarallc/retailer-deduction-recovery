@@ -205,6 +205,21 @@ def main() -> int:
     else:
         rep.fail(f"{no_order_standard} standard retailer deductions missing order_id")
 
+    # Distributors are covered explicitly — the old retailer-only filter
+    # excluded exactly the rows that would be missing if the distributor
+    # channel silently dropped out (CINDERHAVEN_CANONICAL.md, partner roster).
+    dist_counts = cur.execute("""
+        SELECT COUNT(*),
+               COUNT(*) FILTER (WHERE order_id IS NULL)
+        FROM int_all_deductions WHERE channel_type = 'distributor'
+    """).fetchone()
+    if dist_counts[0] == 0:
+        rep.fail("No distributor deductions in int_all_deductions — channel missing")
+    elif dist_counts[1] == 0:
+        rep.passed(f"Distributor deductions present ({dist_counts[0]:,}) and all have order_id")
+    else:
+        rep.fail(f"{dist_counts[1]} distributor deductions missing order_id")
+
     slotting_with_order = cur.execute("""
         SELECT COUNT(*) FROM int_all_deductions
         WHERE deduction_type='slotting' AND order_id IS NOT NULL

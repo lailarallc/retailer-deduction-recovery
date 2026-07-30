@@ -1,4 +1,37 @@
 {
+  "DIST-DPI": {
+    "name": "DPI Northwest",
+    "channel_type": "distributor",
+    "dispute_portal_name": null,
+    "dispute_portal_url": null,
+    "dispute_method": null,
+    "notes": null,
+    "rules": {},
+    "codes": [],
+    "edi_requirements": []
+  },
+  "DIST-KEHE": {
+    "name": "KeHE",
+    "channel_type": "distributor",
+    "dispute_portal_name": null,
+    "dispute_portal_url": null,
+    "dispute_method": null,
+    "notes": null,
+    "rules": {},
+    "codes": [],
+    "edi_requirements": []
+  },
+  "DIST-UNFI": {
+    "name": "UNFI",
+    "channel_type": "distributor",
+    "dispute_portal_name": null,
+    "dispute_portal_url": null,
+    "dispute_method": null,
+    "notes": null,
+    "rules": {},
+    "codes": [],
+    "edi_requirements": []
+  },
   "RET-COSTCO": {
     "name": "Costco",
     "channel_type": "retailer",

@@ -343,11 +343,15 @@ def build_retailers(con) -> dict:
         })
 
     out = {}
-    for r in cur.execute("SELECT * FROM stg_retailers ORDER BY retailer_id").fetchall():
-        rid = r["retailer_id"]
+    # All nine trading partners, with their true channel_type — distributors
+    # are not retailers with a different label (CINDERHAVEN_CANONICAL.md,
+    # partner roster). Rules/codes/EDI remain retailer-keyed; distributors
+    # legitimately carry empty maps until distributor rulebooks are modeled.
+    for r in cur.execute("SELECT * FROM int_all_partners ORDER BY partner_id").fetchall():
+        rid = r["partner_id"]
         out[rid] = {
-            "name": r["retailer_name"],
-            "channel_type": "retailer",
+            "name": r["name"],
+            "channel_type": r["channel_type"],
             "dispute_portal_name": r["dispute_portal_name"],
             "dispute_portal_url": r["dispute_portal_url"],
             "dispute_method": r["dispute_method"],
