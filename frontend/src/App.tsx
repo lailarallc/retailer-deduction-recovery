@@ -135,10 +135,12 @@ export default function App() {
       <header>
         <h1>Cinderhaven Provisions — Retailer Deductions</h1>
         <p className="hero-lede">
-          Trace each retailer deduction through five compounding failures —
-          no visibility, process gaps, weak evidence, inaccessible records,
-          and missed dispute windows — to see what is recoverable, what is
-          preventable, and what each operational fix is worth.
+          Cinderhaven wins ~42% of the disputes it files. The problem isn&apos;t
+          winning — it&apos;s filing: roughly two-thirds of deductions are written
+          off without a fight, so only ~15% of deduction dollars ever come back.
+          This tool traces each of the ${(summary.totals.deductions_dollar / 1e6).toFixed(2)}M
+          in deductions through the five compounding failures that keep the money
+          unclaimed — and what each operational fix is worth.
         </p>
         <p className="subtitle">
           Synthetic dataset · window {summary.window.start} to {summary.window.end} ({summary.window.months} months)
