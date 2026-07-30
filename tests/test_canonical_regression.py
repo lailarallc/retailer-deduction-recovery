@@ -67,11 +67,27 @@ class TestCinderhavenCanonicalRegression:
 
     # -- Backlog total -----------------------------------------------------
 
-    def test_backlog_total_1_35m(self, summary):
-        """Total deduction backlog should be ~$1.35M (canonical, post-06-20 tuning)."""
+    def test_backlog_total_matches_canonical(self, summary):
+        """Cross-channel deduction backlog vs canonical trailing_36m totals, ±2%.
+
+        Target = deductions.retailer_total.trailing_36m +
+        deductions.distributor_total.trailing_36m from
+        reference/canonical_values.json, vendored from
+        MsShawnP/cinderhaven-data-platform@7533264 (VERIFIED-AGAINST-PRODUCTION
+        2026-07-29). Scope note: the app total is cross-channel (all 9 trading
+        partners); window boundaries differ by days from the t36m cut, hence
+        the check_canonical.py 2% dollar tolerance.
+        """
+        canon = json.loads(
+            (Path(__file__).resolve().parent.parent / "reference" / "canonical_values.json").read_text()
+        )
+        target = (
+            canon["deductions"]["retailer_total"]["trailing_36m"]
+            + canon["deductions"]["distributor_total"]["trailing_36m"]
+        )
         total = summary["totals"]["deductions_dollar"]
-        assert 1_300_000 < total < 1_400_000, (
-            f"Backlog ${total:,.0f} outside $1.3M-$1.4M range"
+        assert abs(total - target) / target < 0.02, (
+            f"Backlog ${total:,.0f} drifted >2% from canonical t36m ${target:,.0f}"
         )
 
     # -- Product lines (from SQLite) --------------------------------------
