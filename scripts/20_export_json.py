@@ -87,6 +87,9 @@ def build_summary(con) -> dict:
     ).fetchone()
     window_start = window["start"] if isinstance(window["start"], date) else date.fromisoformat(window["start"])
     window_end = window["end"] if isinstance(window["end"], date) else date.fromisoformat(window["end"])
+    # Inclusive distinct-calendar-month count: Jan 2023 → Jan 2026 = 37 (both
+    # partial end months count). This is the annualization divisor (×12/months)
+    # and the "(N months)" shown in the UI subtitle.
     window_months = (window_end.year - window_start.year) * 12 + (window_end.month - window_start.month) + 1
 
     totals_row = cur.execute("""
@@ -114,6 +117,9 @@ def build_summary(con) -> dict:
 
     recovery_rate = (disputes_row["disputes_recovered"] or 0) / (totals_row["deductions_dollar"] or 1)
     annualized = (totals_row["deductions_dollar"] or 0) * 12 / window_months
+    # Whole-window labor expressed in work-years (total hours / 2080), NOT an
+    # annual FTE count. The UI ignores this field and annualizes on its own:
+    # labor_hours × 12 / window.months / 2080 (App.tsx kpiFte, ≈1.75).
     fte = (disputes_row["labor_hours"] or 0) / 2080.0
 
     by_type = []

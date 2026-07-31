@@ -73,7 +73,9 @@ frontend/
 
 All data is synthetic. Cinderhaven Provisions is a fictional company. Retailer dispute processes, deadlines, and deduction codes are modelled on publicly documented policies but may not reflect current terms.
 
-**Canonical baseline:** 50 SKUs · 5 product lines (AS·PS·SC·DG·SB) · 6 retailers (Walmart·Costco·Whole Foods·Sprouts·Kroger·Regional Group) · 3 distributors (UNFI·KeHE·DPI Northwest). All 9 trading partners are in scope; Shopify DTC is excluded (no deduction process). Data window: January 2023 to January 2026 (36 months). The dataset contains 16,917 deductions ($1.35M) across nine deduction types: short ship, labelling noncompliance, pallet noncompliance, damaged product, late delivery, promo disputes, pricing error, spoilage, and slotting (negotiated, non-disputable).
+Data dictionary note: in `summary.json`, `totals.fte_equivalent` is whole-window labor expressed in work-years (`labor_hours` / 2080), not an annual FTE count — the app's FTE KPI annualizes separately (`labor_hours` × 12 / `window.months` / 2080).
+
+**Canonical baseline:** 50 SKUs · 5 product lines (AS·PS·SC·DG·SB) · 6 retailers (Walmart·Costco·Whole Foods·Sprouts·Kroger·Regional Group) · 3 distributors (UNFI·KeHE·DPI Northwest). All 9 trading partners are in scope; Shopify DTC is excluded (no deduction process). Data window: January 2023 to January 2026 (37 calendar months, inclusive — matches the export's `window.months`; annualized figures use ×12/37). The dataset contains 16,917 deductions ($1.35M) across nine deduction types: short ship, labelling noncompliance, pallet noncompliance, damaged product, late delivery, promo disputes, pricing error, spoilage, and slotting (negotiated, non-disputable).
 
 ## License
 

@@ -135,7 +135,7 @@ export default function App() {
       <header>
         <h1>Cinderhaven Provisions — Retailer Deductions</h1>
         <p className="hero-lede">
-          Cinderhaven wins ~42% of the disputes it files. The problem isn&apos;t
+          Cinderhaven recovers ~42% of every disputed dollar. The problem isn&apos;t
           winning — it&apos;s filing: roughly two-thirds of deductions are written
           off without a fight, so only ~15% of deduction dollars ever come back.
           This tool traces each of the ${(summary.totals.deductions_dollar / 1e6).toFixed(2)}M
