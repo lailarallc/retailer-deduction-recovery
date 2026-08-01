@@ -1,9 +1,9 @@
 {
- "_meta_vendored": {
-  "from": "MsShawnP/cinderhaven-data-platform@6a64179",
-  "path": "reference/canonical_values.yml",
-  "trade_rerate": "2026-07-30",
-  "vendored": "2026-07-30",
+ "_generated": {
+  "generated": "2026-08-01",
+  "generator": "scripts/verify_canonical.py",
+  "platform_head": "c94fd39",
+  "source": "reference/canonical_values.yml",
   "verified_against_production": "2026-07-29"
  },
  "absent": {
@@ -271,6 +271,17 @@
   "verified_against_production": "2026-07-29",
   "workflow_run": 30488858977
  },
+ "price_history": {
+  "baseline": {
+   "effective_date": "2023-01-01",
+   "grain": "50 SKUs x 6 retailers",
+   "rows": 300
+  },
+  "date_span": "2023-01-01|2024-08-17",
+  "grain": "sku x retailer x effective_date (2023-01-01 baseline + subsequent price-change events)",
+  "provenance": "observed against live raw.price_history 2026-08-01 (read-only proxy); pending canonical_gather.sql",
+  "row_count": 407
+ },
  "recoveries": {
   "retailer_amount": {
    "cy2023": 44982.37,
@@ -297,6 +308,9 @@
    "trailing_12m": 25332687.28,
    "trailing_24m": 51163522.94,
    "trailing_36m": 76440490.47
+  },
+  "defect_sku_ttm": {
+   "ttm_through_2025_12_27": 19487913.16
   },
   "dtc_gross": {
    "cy2023": 189654.73,
@@ -336,7 +350,8 @@
    "cy2025": 32323139.62,
    "trailing_12m": 32323139.62,
    "trailing_24m": 67326868.93,
-   "trailing_36m": 99058738.85
+   "trailing_36m": 99058738.85,
+   "ttm_through_2025_12_27": 33248389.92
   },
   "wholesale_distributor": {
    "cy2023": 8064242.64,
@@ -355,6 +370,100 @@
    "trailing_36m": 52005749.76
   }
  },
+ "supersedes": [
+  {
+   "reason": "brand name error; the brand is Cinderhaven Provisions",
+   "token": "Cinderhaven Foods"
+  },
+  {
+   "reason": "never a contracted retailer (roster: Walmart, Costco, Whole Foods, Sprouts, Kroger, Regional Group). Allowlist real-retailer deduction-practice research docs.",
+   "token": "Wegmans"
+  },
+  {
+   "reason": "retired pre-reseed scan revenue (the +2,225 phantom-row dataset); current cy2025 is 32,323,139.62",
+   "token": "32,472,742"
+  },
+  {
+   "reason": "same, no-comma code form (was pinned in tsdd validate_workbook.py)",
+   "token": "32472742"
+  },
+  {
+   "reason": "retired pre-reseed scan revenue prose form",
+   "token": "$32.5M"
+  },
+  {
+   "reason": "retired pre-reseed scan revenue prose form",
+   "token": "$32.5 million"
+  },
+  {
+   "reason": "retired scan denominator (pre-verification); current is $32.3M / $33.2M",
+   "token": "$32.8M"
+  },
+  {
+   "reason": "retired scan denominator prose form",
+   "token": "$32.8 million"
+  },
+  {
+   "reason": "retired old TTM rendering; current TTM is $33.2M ($33,248,389.92)",
+   "token": "$33.4M"
+  },
+  {
+   "reason": "retired old TTM prose form",
+   "token": "$33.4 million"
+  },
+  {
+   "reason": "retired combined-basis scan rendering",
+   "token": "$25.6M"
+  },
+  {
+   "reason": "retired PDHA product-data cost (pre-date-shift); current is $93K",
+   "token": "$461K"
+  },
+  {
+   "reason": "retired PDHA product-data cost, full form",
+   "token": "$461,000"
+  },
+  {
+   "reason": "retired PDHA product-data cost (pre-causal placeholder); current is $93K",
+   "token": "$458K"
+  },
+  {
+   "reason": "retired PDHA product-data cost (stale cache); current is $93K",
+   "token": "$430K"
+  },
+  {
+   "reason": "retired PDHA product-data cost (pre-reseed calibration); current is $93K",
+   "token": "$296K"
+  },
+  {
+   "reason": "retired panel projection factor k; k is absent (no table/column) \u2014 see absent.panel_projection_factor_k. NB: bare \"166.5\" is intentionally NOT a token \u2014 it collides with legitimate $166.50 money values in deduction/chargeback data.",
+   "token": "166.488"
+  },
+  {
+   "reason": "retired figure (not a current canonical value)",
+   "token": "$82,924"
+  },
+  {
+   "reason": "retired figure, no-$ form",
+   "token": "82,924"
+  },
+  {
+   "reason": "retired all-in trade cost (old seed rates); current ~$3.6M/yr",
+   "token": "$5.4M"
+  },
+  {
+   "reason": "retired May-2026 SQLite all-in export; current ~$3.6M/yr",
+   "token": "$7.2M"
+  },
+  {
+   "reason": "retired May-2026 SQLite all-in export, full form",
+   "token": "7,174,939"
+  },
+  {
+   "reason": "retired May-2026 SQLite all-in export, full $ form",
+   "token": "$7,174,939"
+  }
+ ],
  "trade": {
   "all_in_annual": {
    "trailing_52w": 3556609.29

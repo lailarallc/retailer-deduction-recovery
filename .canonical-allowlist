@@ -1,0 +1,6 @@
+# Legitimate uses of otherwise-retired tokens.
+#   path/glob            -> skip file    |    TOKEN @ path/glob -> skip token in file
+# Wegmans is a REAL retailer; these are deduction-practice research notes about
+# the actual company, not a claim that Cinderhaven sells through Wegmans.
+Wegmans @ research/retailers/*
+Wegmans @ plan-revision.md
