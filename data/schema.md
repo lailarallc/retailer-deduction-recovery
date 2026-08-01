@@ -89,7 +89,7 @@ Retailer-specific deduction codes (Walmart Code 22, KeHE UDR, etc.). Some retail
 | `deduction_type` | TEXT NOT NULL | Maps to `retailer_rules.deduction_type` |
 | `is_published` | BOOLEAN | TRUE if code is in a public Walmart/KeHE doc; FALSE for inferred codes (Whole Foods, Costco, regional) |
 
-Initial seed: 12 Walmart codes, 8 KeHE codes, plus inferred placeholders for Costco, Whole Foods, Wegmans, Sprouts. UNFI uses three-letter codes that aren't fully public — model a few representative ones flagged `is_published=FALSE`.
+Initial seed: 12 Walmart codes, 8 KeHE codes, plus inferred placeholders for Costco, Whole Foods, Sprouts, Kroger, Regional Group. UNFI uses three-letter codes that aren't fully public — model a few representative ones flagged `is_published=FALSE`.
 
 ### 4. `orders`
 
