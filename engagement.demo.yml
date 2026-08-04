@@ -1,0 +1,57 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Lailara LLC — Engagement config (DEMO)
+#
+# The demo brand identity is COPIED from the canonical source
+# (reference/canonical_values.json, vendored from cinderhaven-data-platform),
+# never typed from memory. This file has `demo: true`, so it is safe to deploy
+# and the deploy guard ignores it. A real client run uses `engagement.yml`
+# (no `demo:` flag) with the client's own name and column headers.
+#
+# NOTE: the deployed demo site renders the committed frontend/public/json/*
+# artifacts directly — this config exists so `client_mode.py` can be exercised
+# on a demo-shaped deduction ledger with the canonical identity.
+# ─────────────────────────────────────────────────────────────────────────────
+
+client:
+  name: "Cinderhaven Provisions (demo)"   # canonical demo brand identity
+
+engagement:
+  id: "CINDERHAVEN-DEMO"
+
+# Analysis anchor = the demo data-window end (matches AS_OF_DATE in
+# frontend/src/sankey/domain.ts and canonical meta.data_tails.orders). Never today.
+as_of_date: "2026-01-02"
+
+prepared_by: "Lailara LLC"
+
+demo: true
+
+# ── Basis & window ───────────────────────────────────────────────────────────
+# Printed beside every headline number. 37 calendar months (Jan 2023 – Jan 2026,
+# inclusive); annualization is x12/37.
+basis:
+  window_months: 37
+  window_label: "Jan 2023 – Jan 2026"
+
+# ── Column mapping ───────────────────────────────────────────────────────────
+# The demo ledger uses the canonical field names directly (identity mapping);
+# a real client maps their headers here instead.
+columns:
+  deduction_id: "deduction_id"
+  deduction_type: "deduction_type"
+  amount: "amount"
+  deduction_date: "deduction_date"
+  retailer: "retailer"
+  dispute_filed: "dispute_filed"
+  recovered_amount: "recovered_amount"
+  dispute_outcome: "dispute_outcome"
+  dispute_deadline: "dispute_deadline"
+  labor_hours: "labor_hours"
+
+# ── Hard-fail thresholds ─────────────────────────────────────────────────────
+thresholds:
+  max_blank_fraction_required: 0.02
+  max_type_violation_fraction: 0.0
+  fail_on_missing_required_column: true
+  fail_on_duplicate_keys: true
+  example_limit: 5
