@@ -202,6 +202,18 @@ describe("App chapter navigation", () => {
     expect(document.querySelector(".sim")).toBeInTheDocument();
   });
 
+  it("hero states the recovery figure on the correct basis (P1 win-rate label lock)", async () => {
+    // 2026-07-31 audit P1: the live hero once read "wins ~42% of the disputes
+    // it files" — but 41.9% is recovered-DOLLARS / disputed-DOLLARS, not a
+    // won/filed dispute-count rate. Lock the corrected basis label so it
+    // can't regress. The distinct won/filed rate lives in the scorecard.
+    await renderApp();
+    const hero = document.querySelector(".hero-lede") as HTMLElement;
+    expect(hero).toBeTruthy();
+    expect(hero.textContent).toContain("of every disputed dollar");
+    expect(hero.textContent).not.toMatch(/of the disputes it files/i);
+  });
+
   it("KPIs and cohort bar persist across all chapters", async () => {
     const user = await renderApp();
 
