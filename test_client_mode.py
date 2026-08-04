@@ -8,7 +8,7 @@ limitations), misnamed headers mapped via engagement.yml, negative / duplicate-k
 detection, the --final watermark drop, and a 100k-row scale run.
 
 All fixture brands/retailers are obviously-fictional placeholders — never a real
-third party (the Wegmans-fixture lesson, checklist §3/§4).
+third party (the real-chain-fixture lesson, checklist §3/§4).
 
 Skipped if lailara_engagement isn't installed.
 """
