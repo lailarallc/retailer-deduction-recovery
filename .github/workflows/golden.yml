@@ -1,0 +1,40 @@
+name: golden
+
+# Enforces the demo golden tests, which lock the committed demo/deployed
+# engine output: the Python golden byte-locks the committed JSON, the JS
+# golden locks the TypeScript domain logic that turns it into rendered
+# figures. Base deps only (no lailara_engagement).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  golden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install pytest
+      - name: Demo golden (python)
+        run: python -m pytest tests/test_demo_golden.py -q
+
+  golden-js:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: npm ci
+      - name: Demo golden (js)
+        run: npx vitest run src/demoGolden.test.ts
