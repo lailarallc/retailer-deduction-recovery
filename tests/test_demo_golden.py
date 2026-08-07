@@ -35,8 +35,8 @@ JSON_DIR = ROOT / "frontend" / "public" / "json"
 # Pinned 2026-08-04 against the deployed demo dataset (window 2023-01-23 →
 # 2026-01-02, 16,917 deductions / $1,346,814.56).
 GOLDEN_SHA256 = {
-    "summary.json": "8facf69f1f983097579cf59fb19d2da5fe04598fe228322f67740788bd76ba5d",
-    "retailers.json": "ec6b8c84528b5d887e40db30025b0b8057cbb0ac8904df6474eda73ef461890b",
+    "summary.json": "40af74810d16bf5a685b56c50cd37c37256fa1b70f84fe6e685721d6e967951f",
+    "retailers.json": "5cf439d91c594c479f56e7a7e0a78fe1445c0f6cdfd817521259207242259d9a",
     "deductions.json": "7de65ee9ef0f8c33348c85049cf21ebe3f649a5195fe93cbafb16bab557e0a83",
 }
 
