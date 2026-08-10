@@ -77,6 +77,32 @@ Data dictionary note: in `summary.json`, `totals.fte_equivalent` is whole-window
 
 **Canonical baseline:** 50 SKUs · 5 product lines (AS·PS·SC·DG·SB) · 6 retailers (Walmart·Costco·Whole Foods·Sprouts·Kroger·Regional Group) · 3 distributors (UNFI·KeHE·DPI Northwest). All 9 trading partners are in scope; Shopify DTC is excluded (no deduction process). Data window: January 2023 to January 2026 (37 calendar months, inclusive — matches the export's `window.months`; annualized figures use ×12/37). The dataset contains 16,917 deductions ($1.35M) across nine deduction types: short ship, labelling noncompliance, pallet noncompliance, damaged product, late delivery, promo disputes, pricing error, spoilage, and slotting (negotiated, non-disputable).
 
+## Client engagement use
+
+The deployed demo above renders the committed Cinderhaven dataset. To analyze a
+**client's own deduction ledger** in place — validated, never committed, never
+deployed — use client mode (see [INPUT-SPEC.md](INPUT-SPEC.md) for the intake file):
+
+```bash
+pip install -e ../engagement-template/lib      # the shared lailara_engagement scaffold
+python client_mode.py --config engagement.yml --input client-data/deductions.csv \
+    --out client-output [--final]
+```
+
+It runs a preflight on the client file: a missing required column (or data that
+isn't ready) produces a branded **Data Readiness Report** naming exactly what's
+wrong, instead of results. On a clean file it writes, to `client-output/` (gitignored):
+
+- `deduction-recovery-summary.html` — branded, provenance-footed (input SHA-256,
+  row counts, `as_of_date`, config hash, validation status), DRAFT-watermarked
+  until `--final`. Every dollar figure prints its basis and window; recovery is
+  shown on both bases (recovered / all dollars, and recovered / disputed dollars).
+- `json/summary.json` — the headline analytics in the app's schema, for an optional
+  local build (never deployed).
+
+Client identity, window, basis, and column mapping all come from `engagement.yml`
+(copy [`engagement.demo.yml`](engagement.demo.yml)); no client value is hardcoded.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

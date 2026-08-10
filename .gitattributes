@@ -1,1 +1,5 @@
 * text=auto
+# Byte-lock demo goldens: pin JSON to LF so the sha256 lock in
+# tests/test_demo_golden.py matches on every platform (a CRLF working
+# tree on Windows must not diverge from the LF blob CI checks out).
+*.json eol=lf
