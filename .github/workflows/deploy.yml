@@ -1,4 +1,4 @@
-name: Deploy frontend to Cloudflare Workers
+name: Deploy frontend to Cloudflare Pages
 
 on:
   push:
@@ -39,8 +39,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Cloudflare Workers
-        run: npx wrangler deploy
+      - name: Deploy to Cloudflare Pages
+        # deductions.lailarallc.com is served by the Pages project
+        # retailer-deduction-recovery (per CLAUDE.md "Deployment: Cloudflare Pages").
+        # The prior `wrangler deploy` shipped a Worker nothing routed to — the live
+        # site sat ~2 months stale. Deploy the built dist to the Pages project instead.
+        run: npx wrangler pages deploy dist --project-name retailer-deduction-recovery --branch=main --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
