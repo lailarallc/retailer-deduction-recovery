@@ -282,3 +282,15 @@ deployed to Cloudflare Pages. Friend preview still pending. Audit
 (2026-05-15) found the demo has five unique capabilities in a 15-tool
 competitive landscape — but the flat 16-section scroll hides them.
 Arc 2 addresses this.
+
+---
+
+## Improvement History
+
+### 2026-09-23 — Audit (health check only)
+- **Findings:** 1 critical, 4 important, 4 nice-to-have
+- **Top concerns:** client_mode.py prints a false 0.0% recovery rate (and a headline Recovered of $0) when a ledger has `recovered_amount` but no `dispute_filed` column, while the by-retailer table shows the real recovered dollars; rows with recovered dollars but a blank dispute_filed are likewise dropped from the total but kept per retailer. frontend/package.json `deploy`/`preview` still run `wrangler deploy` (the Worker path that left the live site ~2 months stale), and CI deploys without running the full 72-test Vitest suite or lint (eslint currently fails: 31 errors, 23 in SankeyView.tsx). HANDOFF.md last entry 2026-07-18 with ~27 commits since (client mode, canon gate, golden lock, Pages fix); PLAN.md arc and DECISIONS.md do not reflect that work.
+- **Nice-to-have:** README says 59 tests (actual 72) and calls data/ a SQLite database (Postgres is SSOT); requirements.txt omits pytest and lailara_engagement; loose root files (plan-revision.md, test_client_mode.py outside tests/); summary.json by_outcome `dollar` is recovered dollars, not deduction dollars.
+- **Checks run:** Vitest 72/72 pass; pytest 34/34 pass; tsc -b clean; eslint 31 errors; canonical drift gate clean; engagement guard clean; no secrets found (.env.example uses the default local placeholder). Manual security/code-quality/data-correctness pass replaced /security-review, /ce:review and data-science-reviewer.
+- **Action taken:** Audit only — no fixes this session
+- **Next review:** 2026-12-22
