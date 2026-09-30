@@ -23,6 +23,7 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+import prod_guard
 import psycopg2
 import psycopg2.extensions
 import psycopg2.extras
@@ -76,6 +77,7 @@ def connect():
     if not url:
         pw = os.environ.get("POSTGRES_PASSWORD", "")
         url = f"postgresql://postgres:REDACTED@localhost:5432/cinderhaven"
+    prod_guard.check(url)  # refuses a fly tunnel to production
     return _Connection(url)
 
 

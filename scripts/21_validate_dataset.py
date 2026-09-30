@@ -27,6 +27,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
+import prod_guard
 import psycopg2
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -100,6 +101,7 @@ def main() -> int:
         print("FATAL: DATABASE_URL environment variable is not set.")
         return 2
 
+    prod_guard.check(url)  # refuses a fly tunnel to production
     con = psycopg2.connect(url)
     con.cursor().execute("SET search_path TO public_intermediate, public_staging, public_marts, raw, public")
     con.commit()
