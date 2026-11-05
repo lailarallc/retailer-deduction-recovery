@@ -6,7 +6,7 @@ An interactive tool that traces a specialty food manufacturer's retailer deducti
 
 ## What it does
 
-Cinderhaven Provisions is a fictional ~$25M specialty food brand selling through Walmart, Costco, Whole Foods, UNFI, KeHE, and regional chains. The company has outgrown its ability to manage retailer deductions at scale: staff is lean, disputes happen whenever someone can get to them, and deductions are treated as a cost of doing business.
+Cinderhaven Provisions is a fictional ~$25M specialty food brand selling through a national mass retailer, a club retailer, a natural grocer, distributor A, distributor B, and regional chains. The company has outgrown its ability to manage retailer deductions at scale: staff is lean, disputes happen whenever someone can get to them, and deductions are treated as a cost of doing business.
 
 This tool takes a $1.35M backlog across 16,917 deductions and makes the problem visible. It traces each deduction from its type through root cause, evidence quality, evidence accessibility, and dispute timeliness to its outcome — the five compounding failures: no visibility, process gaps, weak evidence, inaccessible records, and missed dispute windows.
 

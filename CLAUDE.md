@@ -99,7 +99,7 @@ To re-export JSON from Postgres:
 ## The five compounding failures (narrative structure)
 
 1. **Visibility** — no one sees the full picture, just individual
-   shocks ("Walmart deducted $36k"). No dashboards, no trending, no
+   shocks ("The national mass retailer deducted $36k"). No dashboards, no trending, no
    categorization. All reactive and episodic.
 2. **Root cause / process gaps** — noncompliant labels (one generic
    label missing required fields instead of retailer-specific

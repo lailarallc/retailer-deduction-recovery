@@ -419,9 +419,9 @@ the same digital-pack lever the simulation surfaces.
 portfolio); digital-evidence projection drops it to $115K, a $600K
 reduction. Realized panel: 37 claims / $183K / avg 18.9-month
 lookback / top auditor Audit Partners Limited at $87K. Retailer
-breakdown merges forward exposure with realized claims — Walmart
-$324K exposed, 14 historical claims already taken; UNFI $135K, 10
-claims; KeHE $87K, 7 claims; Costco $35K, 6 claims; Whole Foods
+breakdown merges forward exposure with realized claims — national mass retailer
+$324K exposed, 14 historical claims already taken; distributor A $135K, 10
+claims; distributor B $87K, 7 claims; club retailer $35K, 6 claims; natural grocer
 $68K with no realized claims yet. Hardcoded retailer audit profiles
 explain why. Evidence breakdown: $535K paper exposure, $174K missing
 exposure, only $5K digital exposure. Trace cross-link on top-10
@@ -450,7 +450,7 @@ that were ambient across other views into one comparable scorecard
 so Walmart-vs-UNFI-vs-KeHE differences read at a glance.
 
 **State:** 10 cards in the full portfolio. Default-sort top three:
-Walmart $557K / UNFI $227K / KeHE $159K. Sort selector toggles
+national mass retailer $557K / distributor A $227K / distributor B $159K. Sort selector toggles
 net-loss / volume / recovery-rate. Selection union extended in
 sankey/data.ts with `kind: "retailer"`; isOnSelectedPath and
 selectionLabel updated; App.tsx looks up the retailer name for the
