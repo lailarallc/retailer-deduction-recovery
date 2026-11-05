@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import type { Deduction } from "../types";
 import { OUTCOME_COLORS, rootCauseFor, readableOutcome } from "../sankey/domain";
 import { formatCount, formatDollars } from "../data";
-import { partnerLabel } from "../partnerLabels";
+import { displayPoNumber, partnerLabel } from "../partnerLabels";
 import "./CausationTraceView.css";
 
 interface Props {
@@ -196,7 +196,7 @@ export default function CausationTraceView({
           <>
             <span className="trace-sep">·</span>
             <span className="trace-summary-po">
-              PO {current.order.po_number}
+              PO {displayPoNumber(current.order.po_number, current.retailer)}
             </span>
           </>
         )}
@@ -250,7 +250,7 @@ function buildOrderChainEvents(d: Deduction): TimelineEvent[] {
       detail: (
         <>
           <strong>{partnerLabel(d.retailer, true)}</strong> issued PO{" "}
-          <strong>{d.order.po_number}</strong> — {formatCount(d.order.total_units)}{" "}
+          <strong>{displayPoNumber(d.order.po_number, d.retailer)}</strong> — {formatCount(d.order.total_units)}{" "}
           units, {formatDollars(d.order.total_value)}.
         </>
       ),

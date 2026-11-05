@@ -23,3 +23,14 @@ export function partnerLabel(
       : BY_KEY.get(p.id) ?? BY_KEY.get(p.name) ?? p.name;
   return capitalize ? label.charAt(0).toUpperCase() + label.slice(1) : label;
 }
+
+// Distributor PO numbers embed the partner name (DPO-UNFI-, DPO-KEHE-,
+// DPO--DPI-). Display only: swap that segment for the label's short form
+// ("distributor A" -> DPO-A-007969). The underlying order IDs are unchanged.
+export function displayPoNumber(
+  po: string,
+  p: { id: string; name: string }
+): string {
+  const short = /^distributor (\w+)$/.exec(partnerLabel(p))?.[1];
+  return short ? po.replace(/^DPO-+[^-]+-/, `DPO-${short}-`) : po;
+}
