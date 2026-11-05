@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "frontend/**"
+      - "reference/retailer_display_labels.json"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
 

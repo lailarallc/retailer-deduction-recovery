@@ -4,6 +4,7 @@ import type { DateRange } from "./TimeRangeSelector";
 import { dateRangeLabel } from "./TimeRangeSelector";
 import { selectionLabel } from "./sankey/domain";
 import { formatCount, formatDollars } from "./data";
+import { partnerLabel } from "./partnerLabels";
 
 interface Props {
   selection: Selection | null;
@@ -26,7 +27,10 @@ export default function CohortBar({
     ? selectionLabel(
         selection,
         selection.kind === "retailer"
-          ? retailers?.[selection.retailerId]?.name
+          ? partnerLabel(
+              retailers?.[selection.retailerId]?.name ?? selection.retailerId,
+              true
+            )
           : undefined
       )
     : null;

@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Deduction, RetailersById } from "../types";
 import { formatCount, formatDollars, formatPercent } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import "./RetailerScorecardView.css";
 
 interface Props {
@@ -42,7 +43,7 @@ const RETAILER_PROFILE: Record<string, string> = {
   "RET-COSTCO":
     "Cross-dock receiving leaves no room for fixes; ASN/label compliance dominates the chargeback mix; refused deliveries on missed appointment windows.",
   "RET-WHOLEFOODS":
-    "Manual Excel + Smartsheet dispute process; strict quality program; double layer of deductions when paired with UNFI distribution.",
+    "Manual Excel + Smartsheet dispute process; strict quality program; double layer of deductions when paired with distributor A.",
   "DIST-UNFI":
     "Two parallel systems (Natural / Conventional); Excel-only dispute forms by email; deductions can pull directly from future invoices.",
   "DIST-KEHE":
@@ -69,7 +70,7 @@ function compute(
     if (!s) {
       s = {
         id: d.retailer.id,
-        name: d.retailer.name,
+        name: partnerLabel(d.retailer, true),
         channelType: d.retailer.channel_type,
         count: 0,
         dollars: 0,
@@ -210,7 +211,7 @@ export default function RetailerScorecardView({
           most common deduction types, dispute acceptance rate, average
           days to decide a dispute, deadline strictness, and how their
           behavior compares to the group. Use this to answer questions
-          like "is Walmart actually our worst retailer or does it just
+          like "is the national mass retailer actually our worst retailer or does it just
           feel that way because they're our biggest?" and "which retailer
           is most likely to accept a dispute if we file one?"
         </p>
@@ -229,7 +230,7 @@ export default function RetailerScorecardView({
             most common deduction types, dispute acceptance rate, average
             days to decide a dispute, deadline strictness, and how their
             behavior compares to the group. Use this to answer questions
-            like "is Walmart actually our worst retailer or does it just
+            like "is the national mass retailer actually our worst retailer or does it just
             feel that way because they're our biggest?" and "which
             retailer is most likely to accept a dispute if we file one?"
           </p>

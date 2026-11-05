@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Deduction } from "../types";
 import { formatCount, formatDollars, formatPercent } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import { isOperational, WIN_PROB, AS_OF_DATE } from "../sankey/domain";
 import "./CostToDisputeView.css";
 
@@ -375,7 +376,7 @@ export default function CostToDisputeView({ cohort, onTrace }: Props) {
               {items.slice(0, 25).map(({ d, p }) => (
                 <tr key={d.deduction_id}>
                   <td className="cost-id">{d.deduction_id}</td>
-                  <td>{d.retailer.name}</td>
+                  <td>{partnerLabel(d.retailer, true)}</td>
                   <td>{d.deduction_type.replace(/_/g, " ")}</td>
                   <td>
                     {p.evidenceQuality.replace(/_/g, " ")}

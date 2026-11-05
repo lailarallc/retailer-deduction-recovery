@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Deduction, Evidence } from "../types";
 import { OUTCOME_COLORS, rootCauseFor, readableOutcome, AS_OF_DATE } from "../sankey/domain";
 import { formatCount, formatDollars, formatPercent } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import "./ExplorerView.css";
 
 interface Props {
@@ -139,7 +140,7 @@ function DeductionDetail({
       <ExplorerCard num="1" title="The deduction">
         <KV label="ID">{deduction.deduction_id}</KV>
         <KV label="Retailer">
-          {deduction.retailer.name}{" "}
+          {partnerLabel(deduction.retailer, true)}{" "}
           <span className="muted">
             ({deduction.retailer.channel_type})
           </span>
@@ -169,7 +170,7 @@ function DeductionDetail({
       <ExplorerCard num="2" title="Visibility & pattern">
         <p className="explorer-prose-tight">
           Among <strong>{deduction.deduction_type.replace(/_/g, " ")}</strong>{" "}
-          at <strong>{deduction.retailer.name}</strong>:
+          at <strong>{partnerLabel(deduction.retailer)}</strong>:
         </p>
         <KV label="Peer count">{formatCount(peers.length)}</KV>
         <KV label="Peer total">{formatDollars(peerTotal)}</KV>

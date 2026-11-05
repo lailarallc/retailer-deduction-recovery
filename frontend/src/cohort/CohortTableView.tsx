@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { Deduction } from "../types";
 import { disputeReadinessFor, TYPE_LABELS, readableOutcome } from "../sankey/domain";
 import { formatDollars } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import "./CohortTableView.css";
 
 interface Props {
@@ -40,7 +41,7 @@ function getSortValue(d: Deduction, key: SortKey): string | number {
   switch (key) {
     case "deduction_id": return d.deduction_id;
     case "date": return d.deduction_date;
-    case "retailer": return d.retailer.name;
+    case "retailer": return partnerLabel(d.retailer, true);
     case "type": return TYPE_LABELS[d.deduction_type] || d.deduction_type;
     case "amount": return d.amount;
     case "readiness": return disputeReadinessFor(d);
@@ -152,7 +153,7 @@ export default function CohortTableView({ cohort, onSelectDeduction, activeDeduc
               >
                 <td className="mono">{d.deduction_id.slice(0, 8)}</td>
                 <td>{d.deduction_date}</td>
-                <td>{d.retailer.name}</td>
+                <td>{partnerLabel(d.retailer, true)}</td>
                 <td>{TYPE_LABELS[d.deduction_type] || d.deduction_type}</td>
                 <td className="num">{formatDollars(d.amount)}</td>
                 <td>{disputeReadinessFor(d)}</td>

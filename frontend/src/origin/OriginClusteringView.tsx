@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Deduction } from "../types";
 import { formatCount, formatDollars, formatPercent } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import { ORIGIN_DIMENSIONS, clusterValueFor, isOperational } from "../sankey/domain";
 import "./OriginClusteringView.css";
 
@@ -356,7 +357,7 @@ export default function OriginClusteringView({
                   <td>
                     {c.topRetailer ? (
                       <>
-                        {c.topRetailer.name}{" "}
+                        {partnerLabel(c.topRetailer.name, true)}{" "}
                         <span className="muted">
                           {formatPercent(c.topRetailer.share)}
                         </span>

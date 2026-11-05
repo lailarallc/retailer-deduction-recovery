@@ -6,6 +6,7 @@ import type {
   RetailersById,
 } from "../types";
 import { formatCount, formatDollars } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import { isOperational } from "../sankey/domain";
 import "./DisputeBuilderView.css";
 
@@ -404,7 +405,7 @@ export default function DisputeBuilderView({
           <strong>{item.d.deduction_id}</strong>
           <span className="muted">
             {" "}
-            · {item.retailer?.name ?? item.d.retailer.name}
+            · {partnerLabel(item.d.retailer, true)}
           </span>
           <span className="muted">
             {" "}
@@ -430,7 +431,7 @@ export default function DisputeBuilderView({
             Requirements
             <span className="muted">
               {" "}
-              ({item.retailer?.name ?? "retailer"} ·{" "}
+              ({item.retailer ? partnerLabel(item.d.retailer, true) : "retailer"} ·{" "}
               {item.d.deduction_type.replace(/_/g, " ")})
             </span>
           </h3>
@@ -472,7 +473,7 @@ export default function DisputeBuilderView({
           {item.retailer ? (
             <p className="builder-mock-desc">
               What a properly assembled submission to{" "}
-              <strong>{item.retailer.name}</strong>{" "}
+              <strong>{partnerLabel(item.d.retailer)}</strong>{" "}
               {item.retailer.dispute_portal_name && (
                 <>
                   via <strong>{item.retailer.dispute_portal_name}</strong>{" "}
@@ -482,7 +483,7 @@ export default function DisputeBuilderView({
             </p>
           ) : (
             <p className="builder-mock-desc muted">
-              Retailer rules for {item.d.retailer.name} not on file.
+              Retailer rules for {partnerLabel(item.d.retailer)} not on file.
             </p>
           )}
           <ul className="builder-mock">

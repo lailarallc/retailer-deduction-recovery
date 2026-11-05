@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Deduction } from "../types";
 import { formatCount, formatDollars, formatPercent } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import { isOperational, evidenceCategoryFor, type EvidenceCategory } from "../sankey/domain";
 import "./PostAuditRiskView.css";
 
@@ -36,7 +37,7 @@ const AUDIT_PROFILE: Record<string, string> = {
     "Regular GFSI compliance audits; chargebacks deducted from future payments.",
   "DIST-UNFI": "Audit deductions can be pulled directly from future invoices.",
   "DIST-KEHE": "Pass-through audits from the underlying retailers.",
-  "RET-WHOLEFOODS": "Amazon-backed audit capabilities; strict quality program.",
+  "RET-WHOLEFOODS": "Parent-company audit capabilities; strict quality program.",
 };
 
 interface RetailerRow {
@@ -131,13 +132,13 @@ export default function PostAuditRiskView({ cohort, onTrace }: Props) {
       return row;
     }
     for (const d of forward) {
-      const row = ensure(d.retailer.id, d.retailer.name);
+      const row = ensure(d.retailer.id, partnerLabel(d.retailer, true));
       row.total += d.amount;
       const ev = useDigital ? "digital" : evidenceCategoryFor(d);
       row.exposure += d.amount * AUDIT_RISK[ev];
     }
     for (const d of realized) {
-      const row = ensure(d.retailer.id, d.retailer.name);
+      const row = ensure(d.retailer.id, partnerLabel(d.retailer, true));
       row.realizedCount++;
       row.realizedDollars += d.amount;
     }
@@ -190,7 +191,7 @@ export default function PostAuditRiskView({ cohort, onTrace }: Props) {
       <section className="audit section">
         <h2>Post-audit risk exposure</h2>
         <p className="section-description">
-          Retailers like Walmart periodically audit suppliers' past
+          Large retailers periodically audit suppliers' past
           shipments. If labels, pack records, or documentation don't match
           their specs, they can deduct money retroactively — even on orders
           that were originally accepted. This view looks at every open
@@ -213,7 +214,7 @@ export default function PostAuditRiskView({ cohort, onTrace }: Props) {
         <div>
           <h2>Post-audit risk exposure</h2>
           <p className="section-description">
-            Retailers like Walmart periodically audit suppliers' past
+            Large retailers periodically audit suppliers' past
             shipments. If labels, pack records, or documentation don't
             match their specs, they can deduct money retroactively — even
             on orders that were originally accepted. This view looks at
@@ -321,7 +322,7 @@ export default function PostAuditRiskView({ cohort, onTrace }: Props) {
                   {topRealized.map((d) => (
                     <tr key={d.deduction_id}>
                       <td className="audit-id">{d.deduction_id}</td>
-                      <td>{d.retailer.name}</td>
+                      <td>{partnerLabel(d.retailer, true)}</td>
                       <td>{d.post_audit?.auditor_name ?? "—"}</td>
                       <td>
                         {d.post_audit
@@ -353,10 +354,10 @@ export default function PostAuditRiskView({ cohort, onTrace }: Props) {
         <header className="audit-section-head">
           <h3>Where the exposure sits</h3>
           <p className="audit-section-desc">
-            Different retailers run different audit playbooks. Walmart's
-            third-party teams come in months later by email; UNFI deducts
-            directly from future invoices; KeHE passes audits through from
-            its underlying retailers.
+            Different retailers run different audit playbooks. The national mass
+            retailer's third-party teams come in months later by email;
+            distributor A deducts directly from future invoices; distributor B
+            passes audits through from its underlying retailers.
           </p>
         </header>
         <table className="audit-retailer-table data-table">

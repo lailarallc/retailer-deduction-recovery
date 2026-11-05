@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Deduction } from "../types";
 import { formatCount, formatDollars } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import { isOperational, evidenceCategoryFor, AS_OF_DATE, type EvidenceCategory } from "../sankey/domain";
 import "./TimelinePressureView.css";
 
@@ -286,7 +287,7 @@ export default function TimelinePressureView({ cohort, onTrace }: Props) {
               {list.slice(0, 25).map(({ d, bucket, evidence, days }) => (
                 <tr key={d.deduction_id} className={`row-${bucket}`}>
                   <td className="pressure-id">{d.deduction_id}</td>
-                  <td>{d.retailer.name}</td>
+                  <td>{partnerLabel(d.retailer, true)}</td>
                   <td>{d.deduction_type.replace(/_/g, " ")}</td>
                   <td>{EVIDENCE_LABEL[evidence]}</td>
                   <td className="num">{formatDollars(d.amount)}</td>

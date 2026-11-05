@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { Deduction } from "../types";
 import { OUTCOME_COLORS, rootCauseFor, readableOutcome } from "../sankey/domain";
 import { formatCount, formatDollars } from "../data";
+import { partnerLabel } from "../partnerLabels";
 import "./CausationTraceView.css";
 
 interface Props {
@@ -115,7 +116,7 @@ export default function CausationTraceView({
         <div className="trace-summary">
           <span className="trace-summary-id">{current.deduction_id}</span>
           <span className="trace-sep">·</span>
-          <span>{current.retailer.name}</span>
+          <span>{partnerLabel(current.retailer, true)}</span>
           <span className="trace-sep">·</span>
           <span className="trace-summary-type">
             {current.deduction_type.replace(/_/g, " ")}
@@ -184,7 +185,7 @@ export default function CausationTraceView({
       <div className="trace-summary">
         <span className="trace-summary-id">{current.deduction_id}</span>
         <span className="trace-sep">·</span>
-        <span>{current.retailer.name}</span>
+        <span>{partnerLabel(current.retailer, true)}</span>
         <span className="trace-sep">·</span>
         <span className="trace-summary-type">
           {current.deduction_type.replace(/_/g, " ")}
@@ -248,7 +249,7 @@ function buildOrderChainEvents(d: Deduction): TimelineEvent[] {
       step: "PO placed",
       detail: (
         <>
-          <strong>{d.retailer.name}</strong> issued PO{" "}
+          <strong>{partnerLabel(d.retailer, true)}</strong> issued PO{" "}
           <strong>{d.order.po_number}</strong> — {formatCount(d.order.total_units)}{" "}
           units, {formatDollars(d.order.total_value)}.
         </>
@@ -363,7 +364,7 @@ function buildStandardEvents(d: Deduction): TimelineEvent[] {
     step: "Deduction issued",
     detail: (
       <>
-        <strong>{d.retailer.name}</strong> deducted{" "}
+        <strong>{partnerLabel(d.retailer, true)}</strong> deducted{" "}
         <strong>{formatDollars(d.amount)}</strong>
         {d.code ? (
           <>
@@ -415,7 +416,7 @@ function buildStandardEvents(d: Deduction): TimelineEvent[] {
         detail: (
           <>
             Dispute record exists in the system but was never filed with{" "}
-            {d.retailer.name}.
+            {partnerLabel(d.retailer)}.
           </>
         ),
         severity: "fail",
@@ -458,7 +459,7 @@ function buildStandardEvents(d: Deduction): TimelineEvent[] {
       events.push({
         dateLabel: "(open)",
         step: "Outcome",
-        detail: <>Pending — no resolution from {d.retailer.name}.</>,
+        detail: <>Pending — no resolution from {partnerLabel(d.retailer)}.</>,
         severity: "neutral",
       });
     }
@@ -501,7 +502,7 @@ function buildPostAuditEvents(d: Deduction): TimelineEvent[] {
             "Reviewed "
           )}
           {pa.lookback_months} months of transactions for{" "}
-          <strong>{d.retailer.name}</strong>. Claim type:{" "}
+          <strong>{partnerLabel(d.retailer)}</strong>. Claim type:{" "}
           {pa.claim_type.replace(/_/g, " ")}.
         </>
       ),

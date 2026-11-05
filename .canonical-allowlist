@@ -4,3 +4,7 @@
 # the actual company, not a claim that Cinderhaven sells through Wegmans.
 Wegmans @ research/retailers/*
 Wegmans @ plan-revision.md
+# data/schema.md documents the stale SQLite reference copy (not the SSOT, see
+# CLAUDE.md); its lowercase slug 'wegmans' is historical. The gate went
+# case-insensitive in the 2026-11-05 vendor refresh and started matching it.
+Wegmans @ data/schema.md
