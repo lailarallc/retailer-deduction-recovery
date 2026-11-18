@@ -4,10 +4,7 @@
 # U19 owes its key; listed=no: U22 works it down. Generated from the 2026-11-15 manifest pass.
 file_line	printed	exact_value	meaning	source	kind	listed
 README.md:11	$1.35M backlog	1346814.56	deduction dollars, all 9 partners, 2023-01-23 to 2026-01-02 (37 months)	frontend/public/json/summary.json totals.deductions_dollar (scripts/20_export_json.py)	repo-export	yes
-README.md:20	~42%	41.92	recovered dollars / disputed dollars, 37-month window	summary.json totals.disputes_recovered / (totals.deductions_dollar - totals.deductions_no_dispute_dollar) = 196694.71/469194.29	repo-export	yes
 README.md:20	~65%	64.4	simulated recovery on strong-evidence disputes with fixes on (win probability, digital_complete evidence)	constant frontend/src/sankey/domain.ts:94 WIN_PROB.digital_complete = 0.644	assumption	yes
-README.md:30	~15%	14.6	recovered dollars / total deduction dollars, 37-month window	summary.json totals.recovery_rate (196694.71/1346814.56)	repo-export	yes
-README.md:30	~35%	35.53	share of deductions ever disputed (count), 37-month window	summary.json totals.disputes_filed / totals.deductions_count = 6011/16917	repo-export	yes
 README.md:78	($1.35M)	1346814.56	deduction dollars, 37-month window	summary.json totals.deductions_dollar	repo-export	yes
 README.md:78	50 SKUs	50	SKU universe, all time	reference/canonical_values.json universe.skus_total.all_time	prose-only	no
 README.md:78	5 product lines	5	product-line count	reference/canonical_values.json universe.product_lines.all_time	prose-only	no
@@ -18,16 +15,7 @@ README.md:78	37 calendar months	37	data window length, Jan 2023 to Jan 2026	summ
 README.md:78	nine deduction types	9	deduction-type count	summary.json by_type (list length 9)	repo-export	no
 README.md:9	~$25M	25000000	company revenue scale, approximate	prose only (canon revenue.combined_invoiced.cy2025 = 25332687.28 nearest)	prose-only	no
 data/schema.md:317	~35% dispute rate	35	dispute rate across channels (schema target)	prose only; observed 6011/16917 = 35.53 in summary.json	prose-only	yes
-frontend/index.html:10	about 42%	41.92	recovered / disputed dollars (og:description)	summary.json disputes_recovered / (deductions_dollar - deductions_no_dispute_dollar)	repo-export	yes
-frontend/index.html:8	about 42%	41.92	recovered / disputed dollars (meta description)	summary.json disputes_recovered / (deductions_dollar - deductions_no_dispute_dollar)	repo-export	yes
-frontend/src/App.tsx:138	~42%	41.92	recovered / disputed dollars (hero)	summary.json disputes_recovered / (deductions_dollar - deductions_no_dispute_dollar)	repo-export	yes
-frontend/src/App.tsx:140	~15%	14.6	recovered / total deduction dollars (hero)	summary.json totals.recovery_rate	repo-export	yes
 frontend/src/App.tsx:163	~$25M revenue	25000000	company revenue scale (KPI subtitle)	prose only	prose-only	no
-frontend/src/demoGolden.test.ts:41	6011	6011	disputes filed	summary.json totals.disputes_filed	repo-export	no
-frontend/src/demoGolden.test.ts:43	196694.71	196694.71	dollars recovered	summary.json totals.disputes_recovered	repo-export	no
-frontend/src/demoGolden.test.ts:48	10906	10906	deductions never disputed (count)	summary.json totals.deductions_no_dispute_count	repo-export	no
-frontend/src/demoGolden.test.ts:58	0.419	0.41922	recovered / disputed dollars	summary.json derived	repo-export	yes
-frontend/src/demoGolden.test.ts:62	0.146	0.146	recovered / total dollars	summary.json totals.recovery_rate	repo-export	yes
 frontend/src/demoGolden.test.ts:67	1.7	1.747	annualized FTE	summary.json totals.labor_hours x12/37/2080	repo-export	no
 frontend/src/demoGolden.test.ts:83	1197285.64	1197285.64	non-slotting positive deduction dollars (Sankey layer 0 to 1)	frontend/public/json/deductions.json summed amount excl. slotting	repo-export	no
 frontend/src/explorer/ExplorerView.tsx:349	Walmart 3% of COGS	3	Walmart OTIF fine rate	prose only	assumption	no
@@ -44,10 +32,5 @@ tests/test_canonical_regression.py:136	9	9	deduction types in by_type (asserted 
 tests/test_canonical_regression.py:9	retailer-only ~$1.12M	1116467.53	retailer-only deductions trailing 36m (docstring)	reference/canonical_values.json deductions.retailer_total.trailing_36m	prose-only	no
 tests/test_demo_golden.py:102	5.39	5.39	labor work-years, whole window (labor_hours/2080)	summary.json totals.fte_equivalent (labor_hours 11206.2)	repo-export	no
 tests/test_demo_golden.py:106	1.7	1.747	annualized FTE (labor_hours x12/37/2080)	summary.json totals.labor_hours = 11206.2	repo-export	no
-tests/test_demo_golden.py:109	6011	6011	disputes filed, 37-month window	summary.json totals.disputes_filed	repo-export	no
-tests/test_demo_golden.py:110	196694.71	196694.71	dollars recovered, 37-month window	summary.json totals.disputes_recovered	repo-export	no
 tests/test_demo_golden.py:66	37	37	window months	summary.json window.months	repo-export	no
 tests/test_demo_golden.py:71	1346814.56	1346814.56	deduction dollars, 37-month window	summary.json totals.deductions_dollar	repo-export	yes
-tests/test_demo_golden.py:77	436804.72	436804.72	annualized deduction dollars (x12/37)	summary.json totals.annualized_dollar	repo-export	yes
-tests/test_demo_golden.py:84	0.146	0.146	recovered / total deduction dollars	summary.json totals.recovery_rate	repo-export	yes
-tests/test_demo_golden.py:95	0.419	0.41922	recovered / disputed dollars	summary.json disputes_recovered / (deductions_dollar - deductions_no_dispute_dollar)	repo-export	yes
